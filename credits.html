@@ -1,0 +1,230 @@
+<! DOCTYPE html>
+    <html>
+
+    <head>
+        <title> Sort a HTML Table Alphabetically </title>
+
+        <style>
+            @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,700);
+
+            a {
+                color: white;
+            }
+
+            body {
+                background-color: #222;
+                font-family: 'Open Sans', sans-serif;
+                text-align: center;
+                color: white;
+                line-height: 1.4;
+                font-size: 18px;
+                word-spacing: .125em;
+            }
+
+            .table-wrapper {
+                width: 70%;
+                margin: 0 auto;
+            }
+
+            .floatThead-container {
+                margin-top: -2px !important;
+            }
+
+            table {
+                width: 100%;
+                text-align: left;
+                border-collapse: separate;
+                border-spacing: 0 2px;
+            }
+
+            th,
+            td {
+                padding: .25em;
+                text-align: right;
+            }
+
+            th:hover {
+                cursor: pointer
+            }
+
+            th {
+                background-color: #222;
+            }
+
+            td {
+                background: rgba(0, 0, 0, .2);
+                border-color: rgba(0, 0, 0, .3);
+                border-width: 1px 0;
+                border-style: solid;
+            }
+
+            td:first-child {
+                border-width: 1px 0 1px 1px;
+            }
+
+            td:last-child {
+                border-width: 1px 1px 1px 0;
+            }
+
+            tr:nth-child(even) td {
+                background: rgba(0, 0, 0, .4);
+            }
+
+
+            th.headerSortDown:after {
+                content: "?"
+            }
+
+            th.headerSortUp:after {
+                content: "?"
+            }
+        </style>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <!-- SEO Meta Tags -->
+        <meta name="description" content="Your description">
+        <meta name="author" content="Your name">
+
+        <!-- OG Meta Tags to improve the way the post looks when you share the page on Facebook, Twitter, LinkedIn -->
+        <meta property="og:site_name" content="" /> <!-- website name -->
+        <meta property="og:site" content="" /> <!-- website link -->
+        <meta property="og:title" content="" /> <!-- title shown in the actual shared post -->
+        <meta property="og:description" content="" /> <!-- description shown in the actual shared post -->
+        <meta property="og:image" content="" /> <!-- image link, make sure it's jpg -->
+        <meta property="og:url" content="" /> <!-- where do you want your post to link to -->
+        <meta name="twitter:card" content="summary_large_image"> <!-- to have large image post format in Twitter -->
+
+        <!-- Webpage Title -->
+        <title>Desi Webpage Title</title>
+
+        <!-- Styles -->
+        <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap"
+            rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap" rel="stylesheet">
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <link href="css/fontawesome-all.min.css" rel="stylesheet">
+        <link href="css/swiper.css" rel="stylesheet">
+        <link href="css/styles.css" rel="stylesheet">
+
+        <!-- Favicon  -->
+        <link rel="icon" href="images/favicon.png">
+
+    </head>
+
+    <body>
+        <table>
+            <tr>
+                <th>
+                    <a href="index.html"><button type="button" class="btn btn-dark btn-lg">หน้าหลัก</button></a>
+                    <a href="characters.html"><button type="button"
+                            class="btn btn-dark btn-lg">จำหน่ายตัวละคร</button></a>
+                    <a href="weapons.html"><button type="button" class="btn btn-dark btn-lg">จำหน่ายอาวุธ</button></a>
+                    <a href="credits.html"><button type="button" class="btn btn-dark btn-lg">Credit</button></a>
+                </th>
+            </tr>
+        </table>
+
+
+        <h1 align="center"> Credits </h3>
+            <h3 align="center"> <span> เร็ว ๆ นี้ </span> </h3>
+            <br>
+
+            <!--
+            <label for="typeFilter"> ประเภทการขาย : </label>
+            <select class="js-filter-drop" data-target="data-type" name="typeFilter" id="typeFilter">
+                <option value="0">ทั้งหมด</option>
+                <option value="Single">ตัวละครเดี่ยว</option>
+                <option value="Team">ยกทีม</option>
+            </select> |
+            <label for="levelFilter"> กลุ่ม Level : </label>
+            <select class="js-filter-drop" data-target="data-level" name="levelFilter" id="levelFilter">
+                <option value="0">ทั้งหมด</option>
+                <option value="1">1-10</option>
+                <option value="11">11-20</option>
+                <option value="21">21-30</option>
+                <option value="31">31-40</option>
+                <option value="41">41-50</option>
+            </select> |
+            <label for="elementFilter">ธาตุตัวละคร :</label>
+            <select class="js-filter-drop" data-target="data-element" name="elementFilter" id="elementFilter">
+                <option value="0">ทุกธาตุ</option>
+                <option value="Earth">ดิน</option>
+                <option value="Water">น้ำ</option>
+                <option value="Fire">ไฟ</option>
+                <option value="Lightening">สายฟ้า</option>
+            </select>
+            <br>
+            <br>
+-->
+            <script src="https://code.jquery.com/jquery-2.2.4.min.js"> </script>
+            <script
+                src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.28.14/js/jquery.tablesorter.min.js"> </script>
+            <script
+                src="https://www.jqueryscript.net/demo/Simple-jQuery-Dropdown-Table-Filter-Plugin-ddtf-js/ddtf.js"> </script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/floatthead/1.4.0/jquery.floatThead.min.js"> </script>
+            <script type="text/javascript">
+                $(function () {
+                    $('#js-sort-table').tablesorter().floatThead();
+                    //$("#js-sort-table").filterTable('-', 'GD');  
+                    $('.js-filter-drop').change(function () {
+                        $('#js-sort-table tbody tr').hide();
+                        var filters = $('.js-filter-drop').filter(function () {
+                            return $(this).val() != '0';
+                        });
+                        var showSelector = '#js-sort-table tbody tr';
+                        filters.each(function (index) {
+                            showSelector += '[' + $(this).data('target') + '="' + $(this).val() + '"]';
+                        });
+                        $(showSelector).show();
+                    });
+                    $(".js-csv").on('click', function (event) {
+                        exportTableToCSV.apply(this, [$('#js-sort-table'), 'export-86-87-league.csv']);
+                    });
+                });
+                function exportTableToCSV($table, filename) {
+                    var $headers = $table.find('tr:has(th)'),
+                        $rows = $table.find('tr:visible:has(td)')
+                        , tmpColDelim = String.fromCharCode(11)
+                        , tmpRowDelim = String.fromCharCode(0)
+                        , colDelim = '","', rowDelim = '"\r\n"';
+                    var csv = '"';
+                    csv += formatRows($headers.map(grabRow));
+                    csv += rowDelim;
+                    csv += formatRows($rows.map(grabRow)) + '"';
+                    var csvData = 'data:application/csv;charset=utf-8,' + encodeURIComponent(csv);
+                    if (window.navigator.msSaveOrOpenBlob) {
+                        var blob = new Blob([decodeURIComponent(encodeURI(csv))], {
+                            type: "text/csv;charset=utf-8;"
+                        });
+                        navigator.msSaveBlob(blob, filename);
+                    } else {
+                        $(this)
+                            .attr({
+                                'download': filename,
+                                'href': csvData
+                                //,'target' : '_blank'   
+                            });
+                    }
+                    function formatRows(rows) {
+                        return rows.get().join(tmpRowDelim)
+                            .split(tmpRowDelim).join(rowDelim)
+                            .split(tmpColDelim).join(colDelim);
+                    }
+                    function grabRow(i, row) {
+                        var $row = $(row);
+                        //for some reason $cols = $row.find('td') || $row.find('th')    var $cols = $row.find('td');  
+                        if (!$cols.length) $cols = $row.find('th');
+                        return $cols.map(grabCol)
+                            .get().join(tmpColDelim);
+                    }
+                    function grabCol(j, col) {
+                        var $col = $(col),
+                            $text = $col.text();
+                        return $text.replace('"', '""');
+                    }
+                }
+            </script>
+    </body>
+
+    </html>
