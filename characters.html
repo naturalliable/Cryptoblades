@@ -1,0 +1,1241 @@
+<! DOCTYPE html>
+    <html>
+
+    <head>
+        <title> Sort a HTML Table Alphabetically </title>
+        <style>
+            @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,700);
+
+            a {
+                color: white;
+            }
+
+            body {
+                background-color: #222;
+                font-family: 'Open Sans', sans-serif;
+                text-align: center;
+                color: white;
+                line-height: 1.4;
+                font-size: 18px;
+                word-spacing: .125em;
+            }
+
+            .table-wrapper {
+                width: 70%;
+                margin: 0 auto;
+            }
+
+            .floatThead-container {
+                margin-top: -2px !important;
+            }
+
+            table {
+                width: 100%;
+                text-align: left;
+                border-collapse: separate;
+                border-spacing: 0 2px;
+            }
+
+            th,
+            td {
+                padding: .25em;
+                text-align: right;
+            }
+
+            th:hover {
+                cursor: pointer
+            }
+
+            th {
+                background-color: #222;
+            }
+
+            td {
+                background: rgba(0, 0, 0, .2);
+                border-color: rgba(0, 0, 0, .3);
+                border-width: 1px 0;
+                border-style: solid;
+            }
+
+            td:first-child {
+                border-width: 1px 0 1px 1px;
+            }
+
+            td:last-child {
+                border-width: 1px 1px 1px 0;
+            }
+
+            tr:nth-child(even) td {
+                background: rgba(0, 0, 0, .4);
+            }
+
+
+            th.headerSortDown:after {
+                content: "?"
+            }
+
+            th.headerSortUp:after {
+                content: "?"
+            }
+        </style>
+    </head>
+
+    <body>
+        <h1 align="center"> จำหน่ายตัวละคร </h3>
+            <h3 align="center"> <span> ค้นหาโดย </span> </h3>
+            <br>
+            <label for="typeFilter"> ประเภทการขาย : </label>
+            <select class="js-filter-drop" data-target="data-type" name="typeFilter" id="typeFilter">
+                <option value="0">ทั้งหมด</option>
+                <option value="Single">ตัวละครเดี่ยว</option>
+                <option value="Team">ยกทีม</option>
+            </select> |
+            <label for="levelFilter"> กลุ่ม Level : </label>
+            <select class="js-filter-drop" data-target="data-level" name="levelFilter" id="levelFilter">
+                <option value="0">ทั้งหมด</option>
+                <option value="1">1-10</option>
+                <option value="11">11-20</option>
+                <option value="21">21-30</option>
+                <option value="31">31-40</option>
+                <option value="41">41-50</option>
+            </select> |
+            <label for="elementFilter">ธาตุตัวละคร :</label>
+            <select class="js-filter-drop" data-target="data-element" name="elementFilter" id="elementFilter">
+                <option value="0">ทุกธาตุ</option>
+                <option value="Earth">ดิน</option>
+                <option value="Water">น้ำ</option>
+                <option value="Fire">ไฟ</option>
+                <option value="Lightening">สายฟ้า</option>
+            </select>
+            <br>
+            <br>
+            <div class="table-wrapper">
+                <table id="js-sort-table" class="league">
+                    <thead>
+                        <tr>
+                            <th>
+                                <center>No.</center>
+                            </th>
+                            <td>
+                                <center>ประเภท</center>
+                            </td>
+                            <th>
+                                <center>id</center>
+                            </th>
+                            <th>
+                                <center>Level</center>
+                            </th>
+                            <th>
+                                <center>ธาตุ</center>
+                            </th>
+                            <th>
+                                <center>Stamina</center>
+                            </th>
+                            <th>
+                                <center>ราคา (บาท)</center>
+                            </th>
+                            <th>
+                                <center>สถานะ</center>
+                            </th>
+                            <th>
+                                <center>วัน-เวลาที่อัพเดท</center>
+                            </th>
+                            <th>
+                                <center>หมายเหตุ</center>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                         <!--1-->
+                        <tr data-type="Single" data-level="11" data-element="Lightening">
+                            <td>
+                                <center>1</center>
+                            </td>
+                            <td>
+                                <center><font color="Chocolate">ตัวละครเดี่ยว</font></center>
+                            </td>
+                            <td>
+                                <center>569791</center>
+                            </td>
+                            <td>
+                                <center><font color="orange">31</font></center>
+                            </td>
+                            <td>
+                                <center><font color="yellow">สายฟ้า</font></center>
+                            </td>
+                            <td>
+                                <center>100</center>
+                            </td>
+                            <td>
+                                <center>5</center>
+                            </td>
+                            <td>
+                                <center>-</center>
+                            </td>
+                            <td>
+                                <center>25640805-1200</center>
+                            </td>
+                            <td>
+                                <center>Account 1</center>
+                            </td>
+                        </tr>
+                        <tr data-type="Single" data-level="21" data-element="Lightening">
+                            <td>
+                                <center>2</center>
+                            </td>
+                            <td>
+                                <center><font color="Chocolate">ตัวละครเดี่ยว</font></center>
+                            </td>
+                            <td>
+                                <center>1147206</center>
+                            </td>
+                            <td>
+                                <center><font color="green">26</font></center>
+                            </td>
+                            <td>
+                                <center><font color="yellow">สายฟ้า</font></center>
+                            </td>
+                            <td>
+                                <center>100</center>
+                            </td>
+                            <td>
+                                <center>5</center>
+                            </td>
+                            <td>
+                                <center>-</center>
+                            </td>
+                            <td>
+                                <center>25640805-1200</center>
+                            </td>
+                            <td>
+                                <center>Account 1</center>
+                            </td>
+                        </tr>
+                        <tr data-type="Single" data-level="21" data-element="Lightening">
+                            <td>
+                                <center>3</center>
+                            </td>
+                            <td>
+                                <center><font color="Chocolate">ตัวละครเดี่ยว</font></center>
+                            </td>
+                            <td>
+                                <center>1147352</center>
+                            </td>
+                            <td>
+                                <center><font color="green">26</font></center>
+                            </td>
+                            <td>
+                                <center><font color="yellow">สายฟ้า</font></center>
+                            </td>
+                            <td>
+                                <center>100</center>
+                            </td>
+                            <td>
+                                <center>5</center>
+                            </td>
+                            <td>
+                                <center>-</center>
+                            </td>
+                            <td>
+                                <center>25640805-1200</center>
+                            </td>
+                            <td>
+                                <center>Account 1</center>
+                            </td>
+                        </tr>
+                        <tr data-type="Single" data-level="21" data-element="Lightening">
+                            <td>
+                                <center>4</center>
+                            </td>
+                            <td>
+                                <center><font color="Chocolate">ตัวละครเดี่ยว</font></center>
+                            </td>
+                            <td>
+                                <center>1147450</center>
+                            </td>
+                            <td>
+                                <center><font color="green">26</font></center>
+                            </td>
+                            <td>
+                                <center><font color="yellow">สายฟ้า</font></center>
+                            </td>
+                            <td>
+                                <center>100</center>
+                            </td>
+                            <td>
+                                <center>5</center>
+                            </td>
+                            <td>
+                                <center>-</center>
+                            </td>
+                            <td>
+                                <center>25640805-1200</center>
+                            </td>
+                            <td>
+                                <center>Account 1</center>
+                            </td>
+                        </tr>
+                        
+                        <!--2-->
+                        <tr data-type="Single" data-level="11" data-element="Earth">
+                            <td>
+                                <center>6</center>
+                            </td>
+                            <td>
+                                <center><font color="Chocolate">ตัวละครเดี่ยว</font></center>
+                            </td>
+                            <td>
+                                <center>562819</center>
+                            </td>
+                            <td>
+                                <center><font color="orange">31</font></center>
+                            </td>
+                            <td>
+                                <center><font color="green">ดิน</font></center>
+                            </td>
+                            <td>
+                                <center>100</center>
+                            </td>
+                            <td>
+                                <center>5</center>
+                            </td>
+                            <td>
+                                <center>-</center>
+                            </td>
+                            <td>
+                                <center>25640805-1200</center>
+                            </td>
+                            <td>
+                                <center>Account 2</center>
+                            </td>
+                        </tr>
+                        <tr data-type="Single" data-level="31" data-element="Earth">
+                            <td>
+                                <center>7</center>
+                            </td>
+                            <td>
+                                <center><font color="Chocolate">ตัวละครเดี่ยว</font></center>
+                            </td>
+                            <td>
+                                <center>559575</center>
+                            </td>
+                            <td>
+                                <center><font color="orange">32</font></center>
+                            </td>
+                            <td>
+                                <center><font color="green">ดิน</font></center>
+                            </td>
+                            <td>
+                                <center>100</center>
+                            </td>
+                            <td>
+                                <center>5</center>
+                            </td>
+                            <td>
+                                <center>-</center>
+                            </td>
+                            <td>
+                                <center>25640805-1200</center>
+                            </td>
+                            <td>
+                                <center>Account 2</center>
+                            </td>
+                        </tr>
+                        <tr data-type="Single" data-level="31" data-element="Earth">
+                            <td>
+                                <center>8</center>
+                            </td>
+                            <td>
+                                <center><font color="Chocolate">ตัวละครเดี่ยว</font></center>
+                            </td>
+                            <td>
+                                <center>750040</center>
+                            </td>
+                            <td>
+                                <center><font color="orange">31</font></center>
+                            </td>
+                            <td>
+                                <center><font color="green">ดิน</font></center>
+                            </td>
+                            <td>
+                                <center>100</center>
+                            </td>
+                            <td>
+                                <center>5</center>
+                            </td>
+                            <td>
+                                <center>-</center>
+                            </td>
+                            <td>
+                                <center>25640805-1200</center>
+                            </td>
+                            <td>
+                                <center>Account 2</center>
+                            </td>
+                        </tr>
+                        <tr data-type="Single" data-level="31" data-element="Earth">
+                            <td>
+                                <center>9</center>
+                            </td>
+                            <td>
+                                <center><font color="Chocolate">ตัวละครเดี่ยว</font></center>
+                            </td>
+                            <td>
+                                <center>565576</center>
+                            </td>
+                            <td>
+                                <center><font color="orange">31</font></center>
+                            </td>
+                            <td>
+                                <center><font color="green">ดิน</font></center>
+                            </td>
+                            <td>
+                                <center>100</center>
+                            </td>
+                            <td>
+                                <center>5</center>
+                            </td>
+                            <td>
+                                <center>-</center>
+                            </td>
+                            <td>
+                                <center>25640805-1200</center>
+                            </td>
+                            <td>
+                                <center>Account 2</center>
+                            </td>
+                        </tr>
+                        
+                        <!--3-->
+                        <tr data-type="Single" data-level="21" data-element="Water">
+                            <td>
+                                <center>11</center>
+                            </td>
+                            <td>
+                                <center><font color="Chocolate">ตัวละครเดี่ยว</font></center>
+                            </td>
+                            <td>
+                                <center>752122</center>
+                            </td>
+                            <td>
+                                <center><font color="green">30</font></center>
+                            </td>
+                            <td>
+                                <center><font color="aqua">น้ำ</font></center>
+                            </td>
+                            <td>
+                                <center>100</center>
+                            </td>
+                            <td>
+                                <center>5</center>
+                            </td>
+                            <td>
+                                <center>-</center>
+                            </td>
+                            <td>
+                                <center>25640805-1200</center>
+                            </td>
+                            <td>
+                                <center>Account 3</center>
+                            </td>
+                        </tr>
+                        <tr data-type="Single" data-level="21" data-element="Water">
+                            <td>
+                                <center>12</center>
+                            </td>
+                            <td>
+                                <center><font color="Chocolate">ตัวละครเดี่ยว</font></center>
+                            </td>
+                            <td>
+                                <center>1269109</center>
+                            </td>
+                            <td>
+                                <center><font color="green">21</font></center>
+                            </td>
+                            <td>
+                                <center><font color="aqua">น้ำ</font></center>
+                            </td>
+                            <td>
+                                <center>100</center>
+                            </td>
+                            <td>
+                                <center>5</center>
+                            </td>
+                            <td>
+                                <center>-</center>
+                            </td>
+                            <td>
+                                <center>25640805-1200</center>
+                            </td>
+                            <td>
+                                <center>Account 3</center>
+                            </td>
+                        </tr>
+                        <tr data-type="Single" data-level="11" data-element="Fire">
+                            <td>
+                                <center>13</center>
+                            </td>
+                            <td>
+                                <center><font color="Chocolate">ตัวละครเดี่ยว</font></center>
+                            </td>
+                            <td>
+                                <center>1444884</center>
+                            </td>
+                            <td>
+                                <center><font color="aqua">13</font></center>
+                            </td>
+                            <td>
+                                <center><font color="red">ไฟ</font></center>
+                            </td>
+                            <td>
+                                <center>100</center>
+                            </td>
+                            <td>
+                                <center>5</center>
+                            </td>
+                            <td>
+                                <center>-</center>
+                            </td>
+                            <td>
+                                <center>25640805-1200</center>
+                            </td>
+                            <td>
+                                <center>Account 3</center>
+                            </td>
+                        </tr>
+                        <!--4-->
+                        <tr data-type="Single" data-level="31" data-element="Fire">
+                            <td>
+                                <center>14</center>
+                            </td>
+                            <td>
+                                <center><font color="Chocolate">ตัวละครเดี่ยว</font></center>
+                            </td>
+                            <td>
+                                <center>747699</center>
+                            </td>
+                            <td>
+                                <center><font color="orange">31</font></center>
+                            </td>
+                            <td>
+                                <center><font color="red">ไฟ</font></center>
+                            </td>
+                            <td>
+                                <center>100</center>
+                            </td>
+                            <td>
+                                <center>5</center>
+                            </td>
+                            <td>
+                                <center>-</center>
+                            </td>
+                            <td>
+                                <center>25640805-1200</center>
+                            </td>
+                            <td>
+                                <center>Account 4</center>
+                            </td>
+                        </tr>
+                        <tr data-type="Single" data-level="31" data-element="Fire">
+                            <td>
+                                <center></center>
+                            </td>
+                            <td>
+                                <center><font color="Chocolate">ตัวละครเดี่ยว</font></center>
+                            </td>
+                            <td>
+                                <center>569849</center>
+                            </td>
+                            <td>
+                                <center><font color="orange">31</font></center>
+                            </td>
+                            <td>
+                                <center><font color="red">ไฟ</font></center>
+                            </td>
+                            <td>
+                                <center>100</center>
+                            </td>
+                            <td>
+                                <center>5</center>
+                            </td>
+                            <td>
+                                <center>-</center>
+                            </td>
+                            <td>
+                                <center>25640805-1200</center>
+                            </td>
+                            <td>
+                                <center>Account 4</center>
+                            </td>
+                        </tr>
+                        <tr data-type="Single" data-level="31" data-element="Fire">
+                            <td>
+                                <center></center>
+                            </td>
+                            <td>
+                                <center><font color="Chocolate">ตัวละครเดี่ยว</font></center>
+                            </td>
+                            <td>
+                                <center>559566	</center>
+                            </td>
+                            <td>
+                                <center><font color="orange">31</font></center>
+                            </td>
+                            <td>
+                                <center><font color="red">ไฟ</font></center>
+                            </td>
+                            <td>
+                                <center>100</center>
+                            </td>
+                            <td>
+                                <center>5</center>
+                            </td>
+                            <td>
+                                <center>-</center>
+                            </td>
+                            <td>
+                                <center>25640805-1200</center>
+                            </td>
+                            <td>
+                                <center>Account 4</center>
+                            </td>
+                        </tr>
+                        <tr data-type="Single" data-level="31" data-element="Fire">
+                            <td>
+                                <center></center>
+                            </td>
+                            <td>
+                                <center><font color="Chocolate">ตัวละครเดี่ยว</font></center>
+                            </td>
+                            <td>
+                                <center>566182</center>
+                            </td>
+                            <td>
+                                <center><font color="orange">32</font></center>
+                            </td>
+                            <td>
+                                <center><font color="red">ไฟ</font></center>
+                            </td>
+                            <td>
+                                <center>100</center>
+                            </td>
+                            <td>
+                                <center>5</center>
+                            </td>
+                            <td>
+                                <center>-</center>
+                            </td>
+                            <td>
+                                <center>25640805-1200</center>
+                            </td>
+                            <td>
+                                <center>Account 4</center>
+                            </td>
+                        </tr>
+                        
+                        <!--5-->
+                        <tr data-type="Single" data-level="31" data-element="Lightening">
+                            <td>
+                                <center>1</center>
+                            </td>
+                            <td>
+                                <center><font color="Chocolate">ตัวละครเดี่ยว</font></center>
+                            </td>
+                            <td>
+                                <center>748716</center>
+                            </td>
+                            <td>
+                                <center><font color="orange">31</font></center>
+                            </td>
+                            <td>
+                                <center><font color="yellow">สายฟ้า</font></center>
+                            </td>
+                            <td>
+                                <center>100</center>
+                            </td>
+                            <td>
+                                <center>5</center>
+                            </td>
+                            <td>
+                                <center>-</center>
+                            </td>
+                            <td>
+                                <center>25640805-1200</center>
+                            </td>
+                            <td>
+                                <center>Account 5</center>
+                            </td>
+                        </tr>
+                        <tr data-type="Single" data-level="31" data-element="Lightening">
+                            <td>
+                                <center></center>
+                            </td>
+                            <td>
+                                <center><font color="Chocolate">ตัวละครเดี่ยว</font></center>
+                            </td>
+                            <td>
+                                <center>566223</center>
+                            </td>
+                            <td>
+                                <center><font color="orange">31</font></center>
+                            </td>
+                            <td>
+                                <center><font color="yellow">สายฟ้า</font></center>
+                            </td>
+                            <td>
+                                <center>100</center>
+                            </td>
+                            <td>
+                                <center>5</center>
+                            </td>
+                            <td>
+                                <center>-</center>
+                            </td>
+                            <td>
+                                <center>25640805-1200</center>
+                            </td>
+                            <td>
+                                <center>Account 5</center>
+                            </td>
+                        </tr>
+                        <tr data-type="Single" data-level="31" data-element="Lightening">
+                            <td>
+                                <center>3</center>
+                            </td>
+                            <td>
+                                <center><font color="Chocolate">ตัวละครเดี่ยว</font></center>
+                            </td>
+                            <td>
+                                <center>748258</center>
+                            </td>
+                            <td>
+                                <center><font color="orange">31</font></center>
+                            </td>
+                            <td>
+                                <center><font color="yellow">สายฟ้า</font></center>
+                            </td>
+                            <td>
+                                <center>100</center>
+                            </td>
+                            <td>
+                                <center>5</center>
+                            </td>
+                            <td>
+                                <center>-</center>
+                            </td>
+                            <td>
+                                <center>25640805-1200</center>
+                            </td>
+                            <td>
+                                <center>Account 5</center>
+                            </td>
+                        </tr>
+                        <!--6-->
+                        <tr data-type="Single" data-level="31" data-element="Fire">
+                            <td>
+                                <center>1</center>
+                            </td>
+                            <td>
+                                <center><font color="Chocolate">ตัวละครเดี่ยว</font></center>
+                            </td>
+                            <td>
+                                <center>565532</center>
+                            </td>
+                            <td>
+                                <center><font color="orange">31</font></center>
+                            </td>
+                            <td>
+                                <center><font color="red">ไฟ</font></center>
+                            </td>
+                            <td>
+                                <center>100</center>
+                            </td>
+                            <td>
+                                <center>5</center>
+                            </td>
+                            <td>
+                                <center>-</center>
+                            </td>
+                            <td>
+                                <center>25640805-1200</center>
+                            </td>
+                            <td>
+                                <center>Account 6</center>
+                            </td>
+                        </tr>
+                        <tr data-type="Single" data-level="31" data-element="Fire">
+                            <td>
+                                <center>2</center>
+                            </td>
+                            <td>
+                                <center><font color="Chocolate">ตัวละครเดี่ยว</font></center>
+                            </td>
+                            <td>
+                                <center>555852</center>
+                            </td>
+                            <td>
+                                <center><font color="orange">31</font></center>
+                            </td>
+                            <td>
+                                <center><font color="red">ไฟ</font></center>
+                            </td>
+                            <td>
+                                <center>100</center>
+                            </td>
+                            <td>
+                                <center>5</center>
+                            </td>
+                            <td>
+                                <center>-</center>
+                            </td>
+                            <td>
+                                <center>25640805-1200</center>
+                            </td>
+                            <td>
+                                <center>Account 6</center>
+                            </td>
+                        </tr>
+                        <tr data-type="Single" data-level="31" data-element="Fire">
+                            <td>
+                                <center>3</center>
+                            </td>
+                            <td>
+                                <center><font color="Chocolate">ตัวละครเดี่ยว</font></center>
+                            </td>
+                            <td>
+                                <center>562883</center>
+                            </td>
+                            <td>
+                                <center><font color="orange">31</font></center>
+                            </td>
+                            <td>
+                                <center><font color="red">ไฟ</font></center>
+                            </td>
+                            <td>
+                                <center>100</center>
+                            </td>
+                            <td>
+                                <center>5</center>
+                            </td>
+                            <td>
+                                <center>-</center>
+                            </td>
+                            <td>
+                                <center>25640805-1200</center>
+                            </td>
+                            <td>
+                                <center>Account 6</center>
+                            </td>
+                        </tr>
+                        <tr data-type="Single" data-level="21" data-element="Fire">
+                            <td>
+                                <center>4</center>
+                            </td>
+                            <td>
+                                <center><font color="Chocolate">ตัวละครเดี่ยว</font></center>
+                            </td>
+                            <td>
+                                <center>1226023</center>
+                            </td>
+                            <td>
+                                <center><font color="green">25</font></center>
+                            </td>
+                            <td>
+                                <center><font color="red">ไฟ</font></center>
+                            </td>
+                            <td>
+                                <center>100</center>
+                            </td>
+                            <td>
+                                <center>5</center>
+                            </td>
+                            <td>
+                                <center>-</center>
+                            </td>
+                            <td>
+                                <center>25640805-1200</center>
+                            </td>
+                            <td>
+                                <center>Account 6</center>
+                            </td>
+                        </tr>
+                        
+                        <!--7-->
+                        <tr data-type="Single" data-level="21" data-element="Lightening">
+                            <td>
+                                <center>1</center>
+                            </td>
+                            <td>
+                                <center><font color="Chocolate">ตัวละครเดี่ยว</font></center>
+                            </td>
+                            <td>
+                                <center>867052</center>
+                            </td>
+                            <td>
+                                <center><font color="green">30</font></center>
+                            </td>
+                            <td>
+                                <center><font color="yellow">สายฟ้า</font></center>
+                            </td>
+                            <td>
+                                <center>100</center>
+                            </td>
+                            <td>
+                                <center>5</center>
+                            </td>
+                            <td>
+                                <center>-</center>
+                            </td>
+                            <td>
+                                <center>25640805-1200</center>
+                            </td>
+                            <td>
+                                <center>Account 7</center>
+                            </td>
+                        </tr>
+                        <tr data-type="Single" data-level="31" data-element="Lightening">
+                            <td>
+                                <center>2</center>
+                            </td>
+                            <td>
+                                <center><font color="Chocolate">ตัวละครเดี่ยว</font></center>
+                            </td>
+                            <td>
+                                <center>555969</center>
+                            </td>
+                            <td>
+                                <center><font color="orange">32</font></center>
+                            </td>
+                            <td>
+                                <center><font color="yellow">สายฟ้า</font></center>
+                            </td>
+                            <td>
+                                <center>100</center>
+                            </td>
+                            <td>
+                                <center>5</center>
+                            </td>
+                            <td>
+                                <center>-</center>
+                            </td>
+                            <td>
+                                <center>25640805-1200</center>
+                            </td>
+                            <td>
+                                <center>Account 7</center>
+                            </td>
+                        </tr>
+                        <tr data-type="Single" data-level="21" data-element="Lightening">
+                            <td>
+                                <center>3</center>
+                            </td>
+                            <td>
+                                <center><font color="Chocolate">ตัวละครเดี่ยว</font></center>
+                            </td>
+                            <td>
+                                <center>747072</center>
+                            </td>
+                            <td>
+                                <center><font color="green">30</font></center>
+                            </td>
+                            <td>
+                                <center><font color="yellow">สายฟ้า</font></center>
+                            </td>
+                            <td>
+                                <center>100</center>
+                            </td>
+                            <td>
+                                <center>5</center>
+                            </td>
+                            <td>
+                                <center>-</center>
+                            </td>
+                            <td>
+                                <center>25640805-1200</center>
+                            </td>
+                            <td>
+                                <center>Account 7</center>
+                            </td>
+                        </tr>
+                        <!--8-->
+                        <tr data-type="Single" data-level="21" data-element="Earth">
+                            <td>
+                                <center>1</center>
+                            </td>
+                            <td>
+                                <center><font color="Chocolate">ตัวละครเดี่ยว</font></center>
+                            </td>
+                            <td>
+                                <center>1225232</center>
+                            </td>
+                            <td>
+                                <center><font color="green">22</font></center>
+                            </td>
+                            <td>
+                                <center><font color="green">ดิน</font></center>
+                            </td>
+                            <td>
+                                <center>100</center>
+                            </td>
+                            <td>
+                                <center>5</center>
+                            </td>
+                            <td>
+                                <center>-</center>
+                            </td>
+                            <td>
+                                <center>25640805-1200</center>
+                            </td>
+                            <td>
+                                <center>Account 8</center>
+                            </td>
+                        </tr>
+                        <tr data-type="Single" data-level="21" data-element="Earth">
+                            <td>
+                                <center>2</center>
+                            </td>
+                            <td>
+                                <center><font color="Chocolate">ตัวละครเดี่ยว</font></center>
+                            </td>
+                            <td>
+                                <center>1148281</center>
+                            </td>
+                            <td>
+                                <center><font color="green">24</font></center>
+                            </td>
+                            <td>
+                                <center><font color="green">ดิน</font></center>
+                            </td>
+                            <td>
+                                <center>100</center>
+                            </td>
+                            <td>
+                                <center>5</center>
+                            </td>
+                            <td>
+                                <center>-</center>
+                            </td>
+                            <td>
+                                <center>25640805-1200</center>
+                            </td>
+                            <td>
+                                <center>Account 8</center>
+                            </td>
+                        </tr>
+                        <tr data-type="Single" data-level="21" data-element="Earth">
+                            <td>
+                                <center>3</center>
+                            </td>
+                            <td>
+                                <center><font color="Chocolate">ตัวละครเดี่ยว</font></center>
+                            </td>
+                            <td>
+                                <center>1269442</center>
+                            </td>
+                            <td>
+                                <center><font color="green">21</font></center>
+                            </td>
+                            <td>
+                                <center><font color="green">ดิน</font></center>
+                            </td>
+                            <td>
+                                <center>100</center>
+                            </td>
+                            <td>
+                                <center>5</center>
+                            </td>
+                            <td>
+                                <center>-</center>
+                            </td>
+                            <td>
+                                <center>25640805-1200</center>
+                            </td>
+                            <td>
+                                <center>Account 8</center>
+                            </td>
+                        </tr>
+                        
+                        <tr data-type="Team" data-level="21" data-element="Earth">
+                            <td>
+                                <center>10</center>
+                            </td>
+                            <td>
+                                <center><font color="Crimson">ยกทีม</font></center>
+                            </td>
+                            <td>
+                                <center>-</center>
+                            </td>
+                            <td>
+                                <center>31/31/31/32</center>
+                            </td>
+                            <td>
+                                <center><font color="green">ดิน</font></center>
+                            </td>
+                            <td>
+                                <center>100</center>
+                            </td>
+                            <td>
+                                <center>5</center>
+                            </td>
+                            <td>
+                                <center>-</center>
+                            </td>
+                            <td>
+                                <center>25640805-1200</center>
+                            </td>
+                            <td>
+                                <center>แถมฟรีดาบดิน 3 ดาว</center>
+                            </td>
+                        </tr>
+                        <tr data-type="Team" data-level="21" data-element="Fire">
+                            <td>
+                                <center></center>
+                            </td>
+                            <td>
+                                <center><font color="Crimson">ยกทีม</font></center>
+                            </td>
+                            <td>
+                                <center></center>
+                            </td>
+                            <td>
+                                <center>31/31/31/32</center>
+                            </td>
+                            <td>
+                                <center><font color="red">ไฟ</font></center>
+                            </td>
+                            <td>
+                                <center>100</center>
+                            </td>
+                            <td>
+                                <center>5</center>
+                            </td>
+                            <td>
+                                <center>-</center>
+                            </td>
+                            <td>
+                                <center>25640805-1200</center>
+                            </td>
+                            <td>
+                                <center>แถมฟรีดาบไฟ 3 ดาว</center>
+                            </td>
+                        </tr>
+                        <tr data-type="Team" data-level="21" data-element="Lightening">
+                            <td>
+                                <center>5</center>
+                            </td>
+                            <td>
+                                <center><font color="Crimson">ยกทีม</font></center>
+                            </td>
+                            <td>
+                                <center>-</center>
+                            </td>
+                            <td>
+                                <center>31/31/31/32</center>
+                            </td>
+                            <td>
+                                <center><font color="yellow">สายฟ้า</font></center>
+                            </td>
+                            <td>
+                                <center>100</center>
+                            </td>
+                            <td>
+                                <center>5</center>
+                            </td>
+                            <td>
+                                <center>-</center>
+                            </td>
+                            <td>
+                                <center>25640805-1200</center>
+                            </td>
+                            <td>
+                                <center>แถมฟรีดาบสายฟ้า 3 ดาว</center>
+                            </td>
+                        </tr>
+                        <!--
+                        <tr data-type="Team" data-element="water">
+                            <td>8</td>
+                            <td>12/13</td>
+                            <td>Water</td>
+                            
+                            <td>-</td>
+                            <td>25640731-1721</td>
+                        </tr>
+                        -->
+                    </tbody>
+                </table>
+            </div>
+
+
+            <h3 align="center"> <span> สนใจติดต่อ </span> </h3>
+
+            <script src="https://code.jquery.com/jquery-2.2.4.min.js"> </script>
+            <script
+                src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.28.14/js/jquery.tablesorter.min.js"> </script>
+            <script
+                src="https://www.jqueryscript.net/demo/Simple-jQuery-Dropdown-Table-Filter-Plugin-ddtf-js/ddtf.js"> </script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/floatthead/1.4.0/jquery.floatThead.min.js"> </script>
+            <script type="text/javascript">
+                $(function () {
+                    $('#js-sort-table').tablesorter().floatThead();
+                    //$("#js-sort-table").filterTable('-', 'GD');  
+                    $('.js-filter-drop').change(function () {
+                        $('#js-sort-table tbody tr').hide();
+                        var filters = $('.js-filter-drop').filter(function () {
+                            return $(this).val() != '0';
+                        });
+                        var showSelector = '#js-sort-table tbody tr';
+                        filters.each(function (index) {
+                            showSelector += '[' + $(this).data('target') + '="' + $(this).val() + '"]';
+                        });
+                        $(showSelector).show();
+                    });
+                    $(".js-csv").on('click', function (event) {
+                        exportTableToCSV.apply(this, [$('#js-sort-table'), 'export-86-87-league.csv']);
+                    });
+                });
+                function exportTableToCSV($table, filename) {
+                    var $headers = $table.find('tr:has(th)'),
+                        $rows = $table.find('tr:visible:has(td)')
+                        , tmpColDelim = String.fromCharCode(11)
+                        , tmpRowDelim = String.fromCharCode(0)
+                        , colDelim = '","', rowDelim = '"\r\n"';
+                    var csv = '"';
+                    csv += formatRows($headers.map(grabRow));
+                    csv += rowDelim;
+                    csv += formatRows($rows.map(grabRow)) + '"';
+                    var csvData = 'data:application/csv;charset=utf-8,' + encodeURIComponent(csv);
+                    if (window.navigator.msSaveOrOpenBlob) {
+                        var blob = new Blob([decodeURIComponent(encodeURI(csv))], {
+                            type: "text/csv;charset=utf-8;"
+                        });
+                        navigator.msSaveBlob(blob, filename);
+                    } else {
+                        $(this)
+                            .attr({
+                                'download': filename,
+                                'href': csvData
+                                //,'target' : '_blank'   
+                            });
+                    }
+                    function formatRows(rows) {
+                        return rows.get().join(tmpRowDelim)
+                            .split(tmpRowDelim).join(rowDelim)
+                            .split(tmpColDelim).join(colDelim);
+                    }
+                    function grabRow(i, row) {
+                        var $row = $(row);
+                        //for some reason $cols = $row.find('td') || $row.find('th')    var $cols = $row.find('td');  
+                        if (!$cols.length) $cols = $row.find('th');
+                        return $cols.map(grabCol)
+                            .get().join(tmpColDelim);
+                    }
+                    function grabCol(j, col) {
+                        var $col = $(col),
+                            $text = $col.text();
+                        return $text.replace('"', '""');
+                    }
+                }
+            </script>
+    </body>
+
+    </html>
